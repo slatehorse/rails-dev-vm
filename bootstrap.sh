@@ -19,7 +19,7 @@ echo updating package information
 apt-add-repository -y ppa:brightbox/ruby-ng >/dev/null 2>&1
 apt-get -y update >/dev/null 2>&1
 
-install 'development tools' build-essential
+install 'development tools' build-essential libreadline-dev
 
 install Ruby ruby2.3 ruby2.3-dev
 update-alternatives --set ruby /usr/bin/ruby2.3 >/dev/null 2>&1
@@ -43,5 +43,8 @@ install 'ExecJS runtime' nodejs
 locale-gen "en_GB.UTF-8"
 dpkg-reconfigure locales
 update-locale LANG=en_GB.UTF-8 LANGUAGE=en_GB.UTF-8 LC_ALL=en_GB.UTF-8
+
+# For Ruby Koans
+gem install observr
 
 echo 'all set, rock on!'
