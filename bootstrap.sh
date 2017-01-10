@@ -30,8 +30,19 @@ gem install bundler -N >/dev/null 2>&1
 
 install Git git
 install Redis redis-server
+
+echo 'deb http://www.rabbitmq.com/debian/ testing main' | tee /etc/apt/sources.list.d/rabbitmq.list
+wget -O- https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | apt-key add -
+apt-get-y update >/dev/null 2>&1
 install RabbitMQ rabbitmq-server
 
+# set up Rabbit
+rabbitmq-plugins enable rabbitmq_management
+rabbitmqctl add_user admin password
+rabbitmqctl set_user_tags admin administrator
+rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
+
+install SQLite libsqlite3-dev
 install PostgreSQL postgresql postgresql-contrib libpq-dev
 sudo -u postgres createuser --superuser ubuntu
 
@@ -39,12 +50,20 @@ install 'Nokogiri dependencies' libxml2 libxml2-dev libxslt1-dev
 install 'Blade dependencies' libncurses5-dev
 install 'ExecJS runtime' nodejs
 
+echo installing pry
+gem install pry >/dev/null
+
+
+# For Ruby Koans
+echo installing observr
+gem install observr >/dev/null
+
+echo installing rails
+gem install rails >/dev/null
+
 # Needed for docs generation.
 locale-gen "en_GB.UTF-8"
 dpkg-reconfigure locales
 update-locale LANG=en_GB.UTF-8 LANGUAGE=en_GB.UTF-8 LC_ALL=en_GB.UTF-8
-
-# For Ruby Koans
-gem install observr
 
 echo 'all set, rock on!'
