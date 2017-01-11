@@ -10,7 +10,7 @@ Vagrant.configure('2') do |config|
   config.vm.provision :shell, path: 'bootstrap.sh', keep_color: true
 
   config.vm.provider 'virtualbox' do |vb|
-    vb.memory = 2048
+    vb.memory = 4096
     vb.cpus = 2
   end
 end
