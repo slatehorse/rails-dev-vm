@@ -61,6 +61,9 @@ gem install observr >/dev/null
 echo installing rails
 gem install rails >/dev/null
 
+# For adventure game
+install Emacs emacs24
+
 # Needed for docs generation.
 locale-gen "en_GB.UTF-8"
 dpkg-reconfigure locales
