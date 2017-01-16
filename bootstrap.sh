@@ -66,7 +66,7 @@ install Emacs emacs24
 
 # Needed for docs generation.
 locale-gen "en_GB.UTF-8"
-dpkg-reconfigure locales
+dpkg-reconfigure -f noninteractive locales
 update-locale LANG=en_GB.UTF-8 LANGUAGE=en_GB.UTF-8 LC_ALL=en_GB.UTF-8
 
 echo 'all set, rock on!'
